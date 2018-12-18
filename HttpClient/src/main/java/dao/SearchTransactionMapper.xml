@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunke.synchronize_cancel.dao.CancelOrderListMapper" >
+  
+  <insert id="insertBatch" parameterType="com.yunke.synchronize_cancel.pojo.data.CancelOrderList" >
+    insert into paypal_searchTransaction(transaction_id,paypal_account,amt,type,name,timezone,email,currency)
+    values <foreach collection="list" item="item" index="index" separator="," > (#{transaction_id},
+					    #{paypal_account},
+					    #{amt},
+					    #{type},
+					    #{name},
+					    #{timezone},
+					    #{email},
+					    #{currency},)</foreach>
+  </insert>
+</mapper>
